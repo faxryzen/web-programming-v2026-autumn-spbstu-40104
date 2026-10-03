@@ -1,6 +1,10 @@
 
 export function findLongestPalindrome(str)
 {
+    if (typeof str !== "string")
+    {
+        throw new TypeError("findLongestPalindrome uses only string");
+    }
     let strlen = str.length;
     if (strlen < 2)
     {
