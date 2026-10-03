@@ -5,14 +5,15 @@ export function findLongestPalindrome(str)
     {
         throw new TypeError("findLongestPalindrome uses only string");
     }
-    let strlen = str.length;
+    const strlen = str.length;
     if (strlen < 2)
     {
         return str;
     }
     let palindrome = "";
 
-    let back = 0, forw = 1;
+    let back = 0;
+    let forw = 1;
     let maxlen = 0;
     while (forw < strlen)
     {
