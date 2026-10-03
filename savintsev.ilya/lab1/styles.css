@@ -1,0 +1,24 @@
+
+.box {
+    position: relative;
+
+    background-color: #006A4E;
+
+    width: 380px;
+
+    aspect-ratio: 10 / 6;
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+
+    background-color: #F42A41;
+
+    width: 38%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
