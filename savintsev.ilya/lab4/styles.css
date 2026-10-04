@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.product-card {
+  width: 100px;
+  aspect-ratio: 10 / 4;
+  border-width: 2px;
+  border-radius: 15%;
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Product Manager</h1>
+      <form data-testid="entity-form" id="product-form">
+        <input type="text" id="product-id" name="id" placeholder="ID" required>
+        <input type="text" id="product-name" name="name" placeholder="Product name" required>
+        <input type="text" id="product-price" name="price" placeholder="Price" required>
+        <button type="submit">Add Product</button>
+      </form>
+      <section
+        data-testid="entity-list"
+        id="product-list"
+        aria-label="Список элементов"
+      ></section>
+    </main>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
