@@ -5,43 +5,27 @@ export class Product {
     price = 0;
     categories = [];
 
-    constructor(id, name, categories, price)
-    {
-        // checks
+    constructor(id, name, categories = [], price) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.categories = (categories === undefined || categories === null) ? [] : categories;
+        this.categories = categories;
     }
 
     addCategory(category) {
-        // if (category === undefined || category === null) {
-        //     console.warn("category cannot be empty");
-        //     return this;
-        // }
+        if (!category || this.categories.includes(category)) {
+            return false;
+        }
         this.categories.push(category);
-        return this;
-        // const i = this.categories.indexOf(category)
-        // if (i < 0)
-        // {
-        //     this.categories.push(category);
-        //     return this;
-        // }
-        // console.warn("such category already exists");
-        // return this;
+        return true;
     }
     removeCategory(category) {
-        // if (category === undefined || category === null) {
-        //     console.warn("category cannot be empty");
-        //     return 0;
-        // }
-        if (this.categories.indexOf(category) >= 0)
-        {
-            this.categories.splice(i);
-            return 1;
+        const i = this.categories.indexOf(category);
+        if (i < 0) {
+            return false;
         }
-        console.warn("no such category");
-        return 0;
+        this.categories.splice(i, 1);
+        return true;
     }
     get categoryCount() {
         return this.categories.length;
@@ -62,22 +46,31 @@ export function groupProductsByCategory(products) {
 }
 
 export function getUniqueCategories(products) {
-    const uniques = [];
-    for (const [ct, prs] of groupByCategories(products)) {
-        if (prs.length === 1) {
-            uniques.push(ct);
+    const categories = new Set();
+    for (const pr of products) {
+        for (const ct of pr.categories) {
+            categories.add(ct);
         }
     }
-    return uniques;
+    return [...categories];
 }
 
-export function groupProductsByPriceRange(products) {
-    const groups = new Map();
+export function groupProductsByPriceRange(products)
+{
+    const groups = new Map([
+        ['Cheap', []],
+        ['Medium', []],
+        ['Expensive', []]
+    ]);
+
     for (const pr of products) {
-        if (!groups.has(pr.price)) {
-            groups.set(pr.price, []);
+        if (pr.price < 100) {
+            groups.get('Cheap').push(pr);
+        } else if (pr.price < 500)  {
+            groups.get('Medium').push(pr);
+        } else {
+            groups.get('Expensive').push(pr);
         }
-        groups.get(pr.price).push(pr);
     }
     return groups;
 }
